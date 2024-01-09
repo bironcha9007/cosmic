@@ -1,20 +1,23 @@
 import { Link, NavLink } from "react-router-dom"; 
 import Logo from "../assets/logoc.svg"
+import { useCart } from "../context/CartContext";
 import "./Header.css";
 
 export const Header = () => {
+  const { cartList, total } = useCart();
+
   return (
     <header>
       <Link to="/" className="logo">
         <img src={Logo} alt="Shopmate Logo" />
-        <span>Cosmic Glow</span>
+        <span>Shopping Cart</span>
       </Link>
       <nav className="navigation">
-        <NavLink to="/" className="link" end>Home</NavLink>
-        <NavLink to="/cart" className="link">Cart</NavLink>
+        <NavLink to="/" className="link" end>Productos</NavLink>
+        <NavLink to="/cart" className="link">Carrito</NavLink>
       </nav>
       <Link to="/cart" className="items">
-        <span>Cart: 2</span>
+        <span>Cart: {cartList.length}/ ${total}</span>
       </Link>
     </header>
   )
